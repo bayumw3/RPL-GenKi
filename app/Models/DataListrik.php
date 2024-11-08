@@ -10,5 +10,11 @@ class DataListrik extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['date', 'time', 'daya_listrik', 'status'];
+    // Tentukan kolom yang bisa diisi secara massal
+    protected $fillable = [
+        'date',
+        'time',
+        'daya_listrik',
+        'status',
+    ];
 }
