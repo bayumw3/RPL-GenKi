@@ -35,36 +35,37 @@
         <h3 class="text-center">Data Listrik</h3>
         
         <form id="dataForm" action="{{ route('data-listrik.store') }}" method="POST">
-            @csrf
-            <table class="table table-bordered">
-                <thead>
-                    <tr class="bg-primary text-white">
-                        <th>No</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Daya Listrik</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($dataListriks as $index => $data)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td><input type="date" name="data[{{ $index }}][date]" class="form-control" value="{{ $data->date }}"></td>
-                        <td><input type="time" name="data[{{ $index }}][time]" class="form-control" value="{{ $data->time }}"></td>
-                        <td><input type="text" name="data[{{ $index }}][daya_listrik]" class="form-control" value="{{ $data->daya_listrik }}"></td>
-                        <td>
-                            <select name="data[{{ $index }}][status]" class="form-control">
-                                <option value="Updated" {{ $data->status == 'Updated' ? 'selected' : '' }}>Updated</option>
-                                <option value="Not Updated" {{ $data->status == 'Not Updated' ? 'selected' : '' }}>Not Updated</option>
-                            </select>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <button type="submit" class="btn btn-primary">Simpan Data</button>
-        </form>
+    @csrf
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-primary text-white">
+                <th>No</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Daya Listrik</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($dataListriks as $index => $data)
+            <tr>
+                <td>{{ $index + 1 }}</td>
+                <td><input type="date" name="data[{{ $index }}][date]" class="form-control" value="{{ $data->date }}"></td>
+                <td><input type="time" name="data[{{ $index }}][time]" class="form-control" value="{{ $data->time }}"></td>
+                <td><input type="text" name="data[{{ $index }}][daya_listrik]" class="form-control" value="{{ $data->daya_listrik }}"></td>
+                <td>
+                    <select name="data[{{ $index }}][status]" class="form-control">
+                        <option value="Updated" {{ $data->status == 'Updated' ? 'selected' : '' }}>Updated</option>
+                        <option value="Not Updated" {{ $data->status == 'Not Updated' ? 'selected' : '' }}>Not Updated</option>
+                    </select>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Simpan Data</button>
+</form>
+
     </div>
 
     <!-- Modal Structure -->

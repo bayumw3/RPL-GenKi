@@ -25,8 +25,9 @@ class DataListrikController extends Controller
     {
         // Validate the input data
         $request->validate([
+            'data' => 'array', // Ensure 'data' is an array
             'data.*.date' => 'nullable|date',
-            'data.*.time' => 'nullable|date_format:H:i',
+            'data.*.time' => 'nullable',
             'data.*.daya_listrik' => 'nullable|string|max:255',
             'data.*.status' => 'required|in:Updated,Not Updated'
         ]);
