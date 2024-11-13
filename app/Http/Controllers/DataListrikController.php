@@ -47,4 +47,13 @@ class DataListrikController extends Controller
 
         return redirect()->route('data-listrik.index')->with('success', 'Data berhasil disimpan!');
     }
+    public function showHomePage()
+    {
+        $dataListriks = DataListrik::orderBy('id')->get();
+        for ($i = $dataListriks->count(); $i < 5; $i++) {
+            $dataListriks->push(new DataListrik());
+        }
+        return view('home', compact('dataListriks'));
+    }
+
 }

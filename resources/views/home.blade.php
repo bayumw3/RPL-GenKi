@@ -196,56 +196,31 @@
     </div>
     <!-- ========================================== tabel lsitrik ==========================================  -->
     <div class="table-listrik" id="tabel">
-        <h1>Tabel Data Listrik</h1>
-        <table class="table table-bordered">
-            <thead class="table text-center">
-                <tr style="background-color: #3498DB; color: white;">
-                    <th>No</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Daya Listrik</th>
-                    <th>Status</th>
+    <h1>Tabel Data Listrik</h1>
+    <table class="table table-bordered">
+        <thead class="table text-center">
+            <tr style="background-color: #3498DB; color: white;">
+                <th>No</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Daya Listrik</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody class="table text-center">
+            @foreach($dataListriks as $index => $data)
+                <tr class="{{ $index % 2 == 0 ? 'table-secondary' : '' }}">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $data->date }}</td>
+                    <td>{{ $data->time }}</td>
+                    <td>{{ $data->daya_listrik }} V</td>
+                    <td>{{ $data->status }}</td>
                 </tr>
-            </thead>
-            <tbody class="table text-center">
-                <tr class="table-secondary">
-                    <td>1</td>
-                    <td>02/11/2024</td>
-                    <td>16.23</td>
-                    <td>177 V</td>
-                    <td>Updated</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>02/11/2024</td>
-                    <td>20.51</td>
-                    <td>128 V</td>
-                    <td>Updated</td>
-                </tr>
-                <tr class="table-secondary">
-                    <td>3</td>
-                    <td>03/11/2024</td>
-                    <td>09.41</td>
-                    <td>151 V</td>
-                    <td>Updated</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>04/11/2024</td>
-                    <td>16.06</td>
-                    <td>189 V</td>
-                    <td>Updated</td>
-                </tr>
-                <tr class="table-secondary">
-                    <td>5</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>Not Updated</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
     <!-- ========================================== footer ==========================================  -->
     <div class="p-footer">
     <div class="container footer-section" style="background-color: white;">

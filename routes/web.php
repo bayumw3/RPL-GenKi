@@ -8,6 +8,7 @@ use App\Http\Controllers\DataListrikController;
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/home', [DataListrikController::class, 'showHomePage'])->name('home');
 Route::get('/data-listrik', [DataListrikController::class, 'index'])->name('data-listrik.index');
 Route::post('/data-listrik', [DataListrikController::class, 'store'])->name('data-listrik.store');
 
