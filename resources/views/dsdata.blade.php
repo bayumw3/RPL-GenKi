@@ -32,10 +32,6 @@
 </head>
 <body>
     <h1>Welcome to the DS Data Page</h1>
-    <form action="{{ route('logout') }}" method="POST">
-        @csrf
-        <button type="submit">Logout</button>
-    </form>
     <div class="table-container">
         <h3 class="text-center">Data Listrik</h3>
         
