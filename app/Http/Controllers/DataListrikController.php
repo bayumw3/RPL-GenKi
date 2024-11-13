@@ -49,11 +49,10 @@ class DataListrikController extends Controller
     }
     public function showHomePage()
     {
-        $dataListriks = DataListrik::orderBy('id')->get();
-        for ($i = $dataListriks->count(); $i < 5; $i++) {
-            $dataListriks->push(new DataListrik());
-        }
+        $dataListriks = DataListrik::all();
         return view('home', compact('dataListriks'));
     }
+    
+        
 
 }

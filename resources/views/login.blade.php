@@ -29,19 +29,24 @@
         </div>
         <div class="right-login">
             <h1>Sign in</h1>
-            <form>
+            <form action="{{ route('login') }}" method="POST">
+                @csrf
                 <div class="form-group">
-                  <input type="email" class="inputan" id="exampleInputEmail1"  placeholder="Enter email">
+                    <input type="email" name="email" class="inputan" id="exampleInputEmail1" placeholder="Enter email" required>
                 </div>
                 <div class="formku form-group">
                     <div class="password-wrapper">
-                        <input type="password" class="inputan" id="exampleInputPassword1" placeholder="Password">
+                        <input type="password" name="password" class="inputan" id="exampleInputPassword1" placeholder="Password" required>
                         <i class="fas fa-eye toggle-password" id="togglePassword"></i>
                     </div>
                     <p class="forgot">Forgot password?</p>
                 </div>
                 <button type="submit" class="btn">Login</button>
-              </form>
+            </form>
+            @if ($errors->has('loginError'))
+                <div class="alert alert-danger">{{ $errors->first('loginError') }}</div>
+            @endif
+
         </div>
     </div>
 </body>

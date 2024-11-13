@@ -196,30 +196,29 @@
     </div>
     <!-- ========================================== tabel lsitrik ==========================================  -->
     <div class="table-listrik" id="tabel">
-    <h1>Tabel Data Listrik</h1>
-    <table class="table table-bordered">
-        <thead class="table text-center">
-            <tr style="background-color: #3498DB; color: white;">
-                <th>No</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Daya Listrik</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody class="table text-center">
-            @foreach($dataListriks as $index => $data)
-                <tr class="{{ $index % 2 == 0 ? 'table-secondary' : '' }}">
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $data->date }}</td>
-                    <td>{{ $data->time }}</td>
-                    <td>{{ $data->daya_listrik }} V</td>
-                    <td>{{ $data->status }}</td>
+        <h1>Tabel Data Listrik</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Daya Listrik</th>
+                    <th>Status</th>
                 </tr>
+            </thead>
+            <tbody>
+            {{-- Loop untuk menampilkan setiap data dari $dataListriks --}}
+            @foreach($dataListriks as $data)
+            <tr>
+                <td>{{ $data->date }}</td>
+                <td>{{ $data->time }}</td>
+                <td>{{ $data->daya_listrik }}</td>
+                <td>{{ $data->status }}</td>
+            </tr>
             @endforeach
         </tbody>
-    </table>
-</div>
+        </table>
+    </div>
 
     <!-- ========================================== footer ==========================================  -->
     <div class="p-footer">
