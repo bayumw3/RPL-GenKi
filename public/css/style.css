@@ -180,6 +180,10 @@ body {
     align-items: center;
     background-color: #BBDEFB;
     font-family: 'Nunito', Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
+.firts:hover {
+    scale: 120%;
 }
 .first p {
     font-size: 15px;
@@ -199,6 +203,9 @@ body {
     height: 35px;
     border-radius: 20px;
     background-color: white;
+}
+.bubble:hover {
+    scale: 105% !important;
 }
 .bubble img {
     margin: auto;
@@ -407,7 +414,10 @@ body {
 
 .oursevice {
     width: 268px !important;
-    height: auto !important;
+    height: 200px !important;
+}
+.oursevice:hover {
+    scale: 105% !important;
 }
 
 .gallery {
@@ -448,6 +458,11 @@ body {
     padding: 10px;
     width: 360px;
     text-align: center;
+    border: 10px;
+  }
+  .slide:hover {
+    scale: 105%;
+    transition: 0.3s ease, color 0.3s ease;
   }
   .slide-img {
     display: flex;

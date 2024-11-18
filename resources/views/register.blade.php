@@ -30,15 +30,11 @@
         </div>
         <div class="right-login">
             <h1>Sign up</h1>
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('signup') }}">
                 @csrf
                 <div class="form-group">
-                    <input type="email" name="email" class="inputan" id="exampleInputEmail1" placeholder="Enter email" required>
-                    @if ($errors->has('email'))
-                    <div class="alert alert-danger mt-2">
-                        {{ $errors->first('email') }}
-                    </div>
-                    @endif
+                    <input type="email" name="email" class="inputan" id="email" placeholder="Enter email" required>
+                    <div id="email-error" class="text-danger mt-2"></div>
                 </div>
                 <div class="form-group">
                     <input type="text" name="name" class="inputan" id="exampleInputUsername" placeholder="Create username" required>
@@ -46,131 +42,92 @@
                 <div class="form-group">
                     <input type="text" name="phone_number" class="inputan" id="exampleInputPhone" placeholder="Contact number" required>
                 </div>
-                <div class="formku form-group">
+                <div class="form-group">
                     <div class="password-wrapper">
                         <input type="password" name="password" class="inputan" id="password" placeholder="Password" required>
                         <i class="fas fa-eye toggle-password" id="togglePassword"></i>
-                        @if ($errors->has('password'))
-                        <div class="alert alert-danger mt-2">
-                            {{ $errors->first('password') }}
-                        </div>
-                        @endif
                     </div>
+                    <div id="password-error" class="text-danger mt-2"></div>
                 </div>
-                <div class="formku form-group">
+                <div class="form-group">
                     <div class="password-wrapper">
                         <input type="password" name="password_confirmation" class="inputan" id="password_confirmation" placeholder="Confirm Password" required>
                         <i class="fas fa-eye toggle-password" id="togglePassword2"></i>
+                        <div id="password-confirmation-error" class="text-danger mt-2"></div>
                     </div>
                 </div>
                 <button type="submit" class="btn">Register</button>
             </form>
         </div>
     </div>
-
+    
     <script>
-        // Menambahkan event listener untuk toggle password
-        const togglePassword = document.getElementById('togglePassword');
-        const passwordInput = document.getElementById('exampleInputPassword1');
-        const togglePassword2 = document.getElementById('togglePassword2');
-        const passwordInput2 = document.getElementById('exampleInputPassword2');
-
-        togglePassword.addEventListener('click', function() {
-            const type = passwordInput.type === 'password' ? 'text' : 'password';
-            passwordInput.type = type;
-            this.classList.toggle('fa-eye-slash');
+        // Toggle password visibility
+        document.querySelectorAll('.toggle-password').forEach(toggle => {
+            toggle.addEventListener('click', function () {
+                const input = this.previousElementSibling;
+                input.type = input.type === 'password' ? 'text' : 'password';
+                this.classList.toggle('fa-eye-slash');
+            });
         });
 
-        togglePassword2.addEventListener('click', function() {
-            const type = passwordInput2.type === 'password' ? 'text' : 'password';
-            passwordInput2.type = type;
-            this.classList.toggle('fa-eye-slash');
-        });
-    </script>
-    <script>
-        // Function to validate passwords
-        function validatePasswords() {
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('password_confirmation').value;
+        // Validate passwords
+        document.querySelector('form').addEventListener('submit', function (event) {
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('password_confirmation').value;
+    const email = document.getElementById('email').value;
 
-            if (password !== confirmPassword) {
-                alert('Password and Confirm Password do not match!');
-                return false; // Prevent form submission
-            }
-            return true; // Allow form submission
-        }
-        document.querySelector('form').addEventListener('submit', function(event) {
-            if (!validatePasswords()) {
-                event.preventDefault(); // Mencegah form submit jika password tidak cocok
-            }
-        });
-    </script>
-    <script>
-        // Function untuk validasi panjang password
-        function validatePasswordLength() {
-            const password = document.getElementById('password').value;
-            const passwordConfirm = document.getElementById('password_confirmation').value;
-            const errorMessage = document.getElementById('password-error');
+    if (password.length < 8) {
+        document.getElementById('password-error').textContent = 'Password harus terdiri dari minimal 8 karakter.';
+        event.preventDefault();
+    } else {
+        document.getElementById('password-error').textContent = '';
+    }
 
-            // Validasi panjang password
-            if (password.length < 8) {
-                errorMessage.textContent = 'Password harus terdiri dari minimal 8 karakter.';
-                return false;
-            } else {
-                errorMessage.textContent = ''; // Jika panjang password valid, hapus pesan error
-            }
+    if (password !== confirmPassword) {
+        document.getElementById('password-confirmation-error').textContent = 'Password dan konfirmasi password tidak cocok!';
+        event.preventDefault();
+    } else {
+        document.getElementById('password-confirmation-error').textContent = '';
+    }
 
-            // Validasi kesesuaian password dengan konfirmasi password
-            if (password !== passwordConfirm) {
-                document.getElementById('password-confirmation-error').textContent = 'Password dan konfirmasi password tidak cocok!';
-                return false;
-            } else {
-                document.getElementById('password-confirmation-error').textContent = ''; // Hapus pesan error jika password cocok
-            }
+    if (email.length === 0) {
+        document.getElementById('email-error').textContent = 'Email tidak boleh kosong.';
+        event.preventDefault();
+    }
+});
 
-            return true;
-        }
 
-        document.querySelector('form').addEventListener('submit', function(event) {
-            if (!validatePasswordLength()) {
-                event.preventDefault(); // Mencegah form submit jika password tidak valid
-            }
-        });
-    </script>
-    <script>
-        document.getElementById('email').addEventListener('input', function() {
+        // Check email availability
+        document.getElementById('email').addEventListener('input', function () {
             const email = this.value;
             const emailError = document.getElementById('email-error');
 
             if (email.length > 0) {
                 fetch("{{ route('check.email') }}", {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                        },
-                        body: JSON.stringify({
-                            email: email
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.status === 'error') {
-                            emailError.textContent = data.message;
-                        } else {
-                            emailError.textContent = '';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                    });
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    body: JSON.stringify({ email: email })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'error') {
+                        emailError.textContent = data.message;
+                    } else {
+                        emailError.textContent = '';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
             } else {
                 emailError.textContent = '';
             }
         });
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

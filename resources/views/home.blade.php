@@ -13,6 +13,15 @@
             background-color: white !important;
             color: #3498DB !important;
         }
+        .first:hover {
+            scale: 105% !important;
+        }
+        .ourservice{
+            height: 250px;
+        }
+        .ourservice:hover {
+            scale: 105% !important;
+        }
     </style>
 </head>
 <body>
@@ -119,6 +128,7 @@
                             <h5 class="service-title">Inovatif dan Efisien</h5>
                         </div>
                         <p class="service-text">GenKi mampu mengubah energi gerak menjadi listrik dengan biaya dan energi input minimal, menawarkan solusi efisien bagi banyak orang.</p>
+                        <br>
                     </div>
                 </div>
                 <div class="col-md-3 mb-4 ourservice">

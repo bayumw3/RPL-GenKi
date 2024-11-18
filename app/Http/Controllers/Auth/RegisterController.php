@@ -19,34 +19,28 @@ class RegisterController extends Controller
 
     // Menangani proses pendaftaran
     public function register(Request $request)
-    {
-        // Validasi input
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email|unique:users,email',
-            'name' => 'required|string|unique:users,name|max:255',
-            'phone_number' => 'required|string|max:15',
-            'password' => 'required|confirmed|min:8',
-        ]);
+{
+    $validatedData = $request->validate([
+        'email' => 'required|email|unique:users,email',
+        'name' => 'required|string|max:255',
+        'phone_number' => 'required|string|max:15',
+        'password' => 'required|string|min:8|confirmed',
+    ]);
 
-        // Jika validasi gagal, kembalikan error
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
+    // Create a new user
+    $user = User::create([
+        'email' => $validatedData['email'],
+        'name' => $validatedData['name'],
+        'phone_number' => $validatedData['phone_number'],
+        'password' => bcrypt($validatedData['password']),
+    ]);
 
-        // Simpan data pengguna baru ke database
-        $user = User::create([
-            'email' => $request->email,
-            'name' => $request->name,
-            'phone_number' => $request->phone_number,
-            'password' => Hash::make($request->password),
-        ]);
+    // Log the user in
+    Auth::login($user);
 
-        // Login pengguna setelah pendaftaran
-        Auth::login($user); // Pastikan menggunakan Auth::login()
+    return redirect()->route('home'); // or wherever you want to redirect after successful registration
+}
 
-        // Redirect ke halaman utama setelah login
-        return redirect()->route('home');
-    }
 
     public function checkEmail(Request $request)
     {
