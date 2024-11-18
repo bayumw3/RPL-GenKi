@@ -45,6 +45,24 @@
     color: white;
     text-decoration: none;
   }
+  .buttons-gallery button {
+    display: flex;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 10px;
+    border-radius: 9px;
+    padding: 15px 30px;
+    background-color: #3498DB;
+    color: white;
+    text-decoration: none;
+    border: none;
+  }
+  .buttons-gallery a:hover {
+    background-color: #3498db9f;
+  }
+  .buttons-gallery button:hover {
+    background-color: #3498db9f;
+  }
 
   .upload-container {
     border: 2px dashed #ccc;

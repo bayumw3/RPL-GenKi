@@ -18,11 +18,15 @@
             <a href="#about">About</a>
             <a href="#gallery">Gallery</a>
             <a href="#tabel">Data Listrik</a>
-            <a href="">Contact</a>
+            <a href="#footer">Contact</a>
         </div>
         <div class="left-nav">
             <img src="asst/search.png" alt="">
-            <a href="{{ route('login') }}">Sign in</a>
+            <form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit" class="btn btn-danger">Sign Out</button>
+</form>
+            <!-- <a href="">Sign Out</a> -->
         </div>
     </div>
     <!-- ========================================== top ==========================================  -->
@@ -65,14 +69,14 @@
         </div>
     </div>
     <!-- ========================================== about ==========================================  -->
-    <div class="about">
+    <div class="about" id="about">
         <div class="text">
             <h1>About GenKi</h1>
             <p>GenKi adalah inovasi teknologi memanfaatkan gerakan osilasi pendulum untuk menghasilkan listrik. Prinsip kerjanya berlandaskan hukum fisika, yaitu huku kekekalan energi, energi kinetik dari ayunan pendulum diubah menjadi energi listrik. Dalam meningkatkan penggunaan energi terbarukan, pemanfaatan GenKi menjadi salah satu solusi alternatif yang menjanjikan.</p>
         </div>
     </div>
     <!-- ========================================== about ==========================================  -->
-    <section class="py-5" id="about">
+    <section class="py-5">
         <div class="container">
             <div class="row text-center">
                 <!-- Service Item 1 -->
@@ -153,12 +157,14 @@
         <p>Galeri ini menampilkan berbagai sudut dan desain alat GenKi, sebuah generator listrik berbasis energi kinetik. Dengan memanfaatkan prinsip gravitasi dan momentum, alat ini dirancang untuk mengonversi gerakan pendulum menjadi energi listrik secara efisien. Setiap gambar memperlihatkan detail komponen dan mekanisme alat, mulai dari desain 3D hingga bagian-bagian alat saat berayun.</p>
         <div class="slider">
             <div class="slide-track">
+                @foreach($galleries as $gallery)
                 <div class="slide">
                     <div class="slide-img">
-                        <img src="asst/gambar alat udh rmv bg/3.png" alt="3D Design dari sisi atas">
+                        <img src="{{ asset('storage/' . $gallery->file_path) }}" alt="3D Design dari sisi atas">
                     </div>
-                    <div class="slide-caption">3D Design dari sisi atas</div>
+                    <div class="slide-caption">{{ $gallery->keterangan }}</div>
                 </div>
+                @endforeach
                 <div class="slide">
                     <div class="slide-img">
                         <img src="asst/gambar alat udh rmv bg/6-removebg-preview.png" alt="3D Design dari sisi atas">
@@ -186,13 +192,14 @@
     <div class="listrik" id="listrik">
         <div class="left-listrik">
             <h1>Data Listrik GenKi</h1>
-            <p>Data daya Listrik yang dihasilkan oleh GenKi akan diupdate secara berkala oleh admin dalam bentuk tabel daya listrik</p>
+            <p>Data daya listrik yang dihasilkan oleh generator listrik GenKi akan diperbarui secara berkala oleh tim admin kami. Pembaruan data ini akan disajikan dalam bentuk tabel, yang memuat informasi mengenai daya listrik yang dihasilkan dalam periode waktu tertentu.</p>
             <div class="lihat">
                 <a href="">Lihat Tabel</a>
                 <i class="bi bi-chevron-right"></i>
             </div>
         </div>
         <img class="blue" src="asst/blue.png" alt="">
+        <img class="hehe" src="asst/gambar alat udh rmv bg/2.png" alt="">
     </div>
     <!-- ========================================== tabel lsitrik ==========================================  -->
     <div class="table-listrik" id="tabel">
@@ -223,13 +230,13 @@
     </div>
 
     <!-- ========================================== footer ==========================================  -->
-    <div class="p-footer">
+    <div class="p-footer" id="footer">
     <div class="container footer-section" style="background-color: white;">
         <div class="row">
             <!-- Contact Us Section -->
-            <div class="col-md-4" style="display: flex !important; flex-direction: column;">
+            <div class="col-md-4" style="display: flex !important; flex-direction: column; width: auto !important;">
                 <h5 class="footer-title" style="font-size: 23px;">Contact Us</h5>
-                <div class="contact-item"><i class="bi bi-geo-alt-fill"></i>SV IPB, Bogor</div>
+                <div class="contact-item"><i class="bi bi-geo-alt-fill"></i>Jl. Kumbang No.14, RT.02/RW.06, Babakan, Kecamatan Bogor Tengah, Kota Bogor, Jawa Barat 16128</div>
                 <div class="contact-item"><i class="bi bi-telephone-fill"></i>+62 858 8732 221 (Admin)</div>
                 <div class="contact-item"><i class="bi bi-envelope-fill"></i>genkiwebsite@gmail.com</div>
             </div>
@@ -241,20 +248,6 @@
                     <i class="bi bi-twitter-x"></i>
                     <i class="bi bi-facebook"></i>
                 </div>
-                <h5 class="footer-title mt-4">Customer Service</h5>
-                <div class="sss">
-                    <div class="service-item">Terms of Use</div>
-                    <div class="service-item">FAQ</div>
-                    <div class="service-item">Report Issues</div>
-                </div>
-            </div>
-    
-            <!-- Subscribe Section -->
-            <div class="col-md-4">
-                <h5 class="footer-title">Subscribe to our News Letter</h5>
-                <p class="ppp">Sign up to be the first to receive latest news about our products.</p>
-                <input type="email" class="subscribe-input" placeholder="Enter Your Email Address">
-                <button class="btn subscribe-button">Subscribe<i class="bi bi-chevron-right"></i></button>
             </div>
         </div>
     </div>
@@ -263,16 +256,55 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Mendapatkan navbar
-const navbar = document.querySelector('.navbar');
+    const navbar = document.querySelector('.navbar');
 
-// Menambahkan event listener untuk scroll
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled'); // Tambahkan kelas scrolled jika scroll lebih dari 50px
-    } else {
-        navbar.classList.remove('scrolled'); // Hapus kelas scrolled jika scroll kembali ke atas
+    // Menambahkan event listener untuk scroll
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled'); // Tambahkan kelas scrolled jika scroll lebih dari 50px
+        } else {
+            navbar.classList.remove('scrolled'); // Hapus kelas scrolled jika scroll kembali ke atas
+        }
+    });
+    let currentIndex = 0;
+
+function updateArrows() {
+    const slides = document.querySelectorAll('.slide');
+    const leftArrow = document.querySelector('.arrow.left');
+    const rightArrow = document.querySelector('.arrow.right');
+
+    // Sembunyikan arrow berdasarkan posisi slide
+    leftArrow.style.display = currentIndex === 0 ? 'none' : 'block';
+    rightArrow.style.display = currentIndex === slides.length - 1 ? 'none' : 'block';
+}
+
+function moveSlide(direction) {
+    const slideTrack = document.querySelector('.slide-track');
+    const slides = document.querySelectorAll('.slide');
+    const slideWidth = slides[0].offsetWidth;
+    const maxIndex = slides.length - 1;
+
+    // Update current index
+    currentIndex += direction;
+
+    // Pastikan index berada dalam rentang [0, maxIndex]
+    if (currentIndex < 0) {
+        currentIndex = 0;
+    } else if (currentIndex > maxIndex) {
+        currentIndex = maxIndex;
     }
-});
+
+    // Apply the translation
+    const offset = -currentIndex * slideWidth;
+    slideTrack.style.transform = `translateX(${offset}px)`;
+
+    // Perbarui tampilan tombol arrow
+    updateArrows();
+}
+
+// Inisialisasi tombol arrow
+updateArrows();
+
 
     </script>
 </body>

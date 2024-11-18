@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DataListrik;
+use App\Models\Gallery;
 
 class DashboardListrikController extends Controller
 {
@@ -23,13 +24,14 @@ class DashboardListrikController extends Controller
     {
         // Fetch existing records or create empty rows for the table (5 rows)
         $dataListriks = DataListrik::orderBy('id')->take(5)->get();
+        $galleries = Gallery::all();
 
         // If there are less than 5 rows, create empty ones
         for ($i = $dataListriks->count(); $i < 5; $i++) {
             $dataListriks->push(new DataListrik());
         }
 
-        return view('home', compact('dataListriks'));
+        return view('home', compact('dataListriks','galleries'));
     }
 
     public function indexubah()

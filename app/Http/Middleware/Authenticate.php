@@ -17,4 +17,12 @@ class Authenticate
     {
         return $next($request);
     }
+    
+    public function redirectTo($request)
+    {
+        if (! $request->expectsJson()) {
+            return route('login');  // Ganti URL ini sesuai kebutuhan Anda
+        }
+    }
+
 }

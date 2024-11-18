@@ -23,30 +23,16 @@
         </div>
         <div class="kiri">
             <div class="gallery-card">
+                @foreach($galleries as $gallery)
                 <div class="card">
-                    <img src="asst/gambar alat udh rmv bg/3.png" alt="">
+                    <!-- Menampilkan gambar -->
+                    <img src="{{ asset('storage/' . $gallery->file_path) }}" alt="Gambar Gallery">
+                    <!-- Menampilkan keterangan -->
                     <div class="bottom">
-                        3D Design dari sisi atas
+                        {{ $gallery->keterangan }}
                     </div>
                 </div>
-                <div class="card">
-                    <img src="asst/gambar alat udh rmv bg/6.png" alt="">
-                    <div class="bottom">
-                        Gambar Alat Belakang
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="asst/gambar alat udh rmv bg/7.png" alt="">
-                    <div class="bottom">
-                        Gambar Alat Swing
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="asst/gambar alat udh rmv bg/5.png" alt="">
-                    <div class="bottom">
-                        Bagian Atas saat Swing
-                    </div>
-                </div>
+                @endforeach
             </div>
             <a href="{{ url('gallery-ubah') }}">Ubah Data</a>
         </div>

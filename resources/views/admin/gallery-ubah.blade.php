@@ -25,26 +25,37 @@
             <a href="">Add Image</a>
             <a href="{{ url('gallery-delete') }}">Delete Image</a>
         </div>
-        <div class="upload-container" id="drop-zone">
-            <div class="upload-icon"><span class="line-md--upload-loop"></span></div>
-            <div class="text">
-                <label class="upload-text" for="file-upload">Click here</label> to upload or drop files here
+        <!-- Form Upload -->
+        <form action="{{ route('gallery.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="upload-container" id="drop-zone">
+                <div class="upload-icon">
+                    <span class="line-md--upload-loop"></span>
+                </div>
+                <div class="text">
+                    <label class="upload-text" for="file-upload">Click here</label> to upload or drop files here
+                </div>
+                <input type="file" id="file-upload" name="file" multiple class="hidden-input">
+                <div class="preview-container" id="preview-container"></div>
+
+              <!-- Popup Success -->
+              <div id="popup-success" class="popup">
+                  <p>Data berhasil di update</p>
+                  <span style="margin-bottom: 40px;" class="qlementine-icons--success-16"></span>
+                  <div class="tombol">
+                      <a href="{{ url('gallery') }}" onclick="hidePopupSuccess()">OK</a>
+                  </div>
+              </div>
             </div>
-            <input type="file" id="file-upload" multiple class="hidden-input">
-            <div class="preview-container" id="preview-container"></div>
-            
-      <div id="popup-success" class="popup">
-        <p>Data berhasil di update</p>
-        <span style="margin-bottom: 40px;" class="qlementine-icons--success-16"></span>
-        <div class="tombol">
-            <a onclick="hidePopupSuccess()">OK</a>
-        </div>
-      </div>
-        </div>
-        <div class="buttons-gallery bawah">
-            <a href="{{ url('gallery') }}">Cancel</a>
-            <a href="javascript:void(0);" onclick="confirmUpdate()">Confirm</a>
-        </div>
+            <label for="keterangan"> Tambah keterangan</label>
+            <div class="input-group mb-3">
+              <input type="text" name="keterangan" id="keterangan" class="form-control" placeholder="Enter some information" aria-label="User input" aria-describedby="button-addon2">
+            </div>
+            <div class="buttons-gallery bawah">
+                <a href="{{ url('gallery') }}">Cancel</a>
+                <button type="submit" class="btn btn-success" onclick="confirmUpdate()">Confirm</button>
+            </div>
+        </form>
     </div>
     <script>
         const dropZone = document.getElementById('drop-zone');

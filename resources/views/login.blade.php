@@ -13,7 +13,7 @@
     <title>Login</title>
 </head>
 <body>
-    <div class="container">
+    <div class="bodo">
         <div class="left-login" style="background-image: url('asst/bg-login.png'); background-size: cover; background-position: center;">
             <div class="left-middle">
                 <div class="left">
@@ -21,10 +21,10 @@
                     <h2>GenKi Website</h2>
                     <div class="combine">
                         <p>If you don't have an account register</p>
-                        <p>You can <a href="{{ route('signup') }}">Register here !</a></p>
+                        <p>You can <a href="{{ route('register') }}">Register here !</a></p>
                     </div>
                 </div>
-                <img src="asst/login-man.png" alt="">
+                <img src="asst/login.png" alt="">
             </div>
         </div>
         <div class="right-login">

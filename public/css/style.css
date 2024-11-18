@@ -11,6 +11,9 @@ html {
 body {
     background-image: url("../asst/back.png");
     background-color: #EFF1F1;
+    background-repeat: no-repeat; /* Mencegah pengulangan gambar latar */
+    background-size: cover; /* Membuat gambar memenuhi seluruh area */
+    background-position: center; /* Memastikan gambar berada di tengah */
 }
 
 .navbar {
@@ -48,6 +51,9 @@ body {
     font-weight: 600;
     color: black;
 }
+.navbar .items a:hover {
+    text-decoration: underline;
+}
 .left-nav {
     display: flex;
     justify-content: center;
@@ -70,6 +76,11 @@ body {
     font-family: 'Nunito', Arial, Helvetica, sans-serif;
     border-radius: 8px;
     font-weight: 550;
+}
+.left-nav a:hover {
+    background-color: #D9D9D9;
+    color: #3498DB;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 
@@ -120,6 +131,10 @@ body {
     padding: 9px 5px;
     gap: 16px;
 }
+.learn-more:hover {
+    background-color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 .learn-more a {
     font-family: 'Nunito', Arial, Helvetica, sans-serif;
     font-size: 16px;
@@ -129,7 +144,11 @@ body {
     display: flex;
     gap: 15px;
 }
-.items img {
+.learn-more a:hover {
+    color: #3498DB;
+    transition: color 0.3s ease;
+}
+.items .mid {
     display: flex;
     margin-top: 0;
     position: absolute;
@@ -308,13 +327,14 @@ body {
     margin-bottom: 50px;
 }
 .cara-kerja .foto {
+    width: 100%;
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     margin: auto;
-    justify-content: center;
-    gap: 73px;
+    flex-wrap: nowrap;
     align-items: center;
     margin-bottom: 30px;
+    gap: 0;
 }
 .cara-kerja .foto .item-foto {
     display: flex;
@@ -346,16 +366,44 @@ body {
     background-color: #3498DB;
     margin-left: 0;
     margin-right: auto;
-    border-radius: 15px;
+    border-radius: 8px;
     gap: 5px;
     color: white;
+}
+.cara-kerja .more-information:hover {
+    background-color: white;
+    color: #3498DB;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 .cara-kerja .more-information a {
     font-size: 15px;
     text-decoration: none;
     color: white;
 }
+.cara-kerja .more-information a:hover {
+    color: #3498DB; /* Mengubah warna menjadi biru saat hover */
+    transition: color 0.3s ease;
+}
 
+
+.py-5 {
+    position: relative;
+    overflow: hidden;
+}
+.py-5::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0, 0.8);
+    background-image: url("../asst/bg-login.png");
+    background-size: cover; /* Atur ukuran background agar memenuhi elemen */
+    background-position: center; /* Tempatkan latar di tengah */
+    opacity: 0.9; /* Atur tingkat transparansi latar */
+    z-index: -1; /* Letakkan elemen ini di belakang konten */
+}
 
 .oursevice {
     width: 268px !important;
@@ -386,8 +434,6 @@ body {
 .slider {
     position: relative;
     overflow: hidden;
-    justify-content: center;
-    align-items: center;
     display: flex;
     width: 100%;
     margin-top: 20px;
@@ -395,11 +441,12 @@ body {
   .slide-track {
     display: flex;
     transition: transform 0.5s ease;
+    margin-left: 200px;
   }
   .slide {
     box-sizing: border-box;
     padding: 10px;
-    width: 270px;
+    width: 360px;
     text-align: center;
   }
   .slide-img {
@@ -407,13 +454,13 @@ body {
     background-color: #D9D9D9;
     justify-content: center;
     align-items: center;
-    height: 300px;
+    height: 360px;
     border-radius: 10px 10px 0px 0px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3)
   }
   .slide img {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: contain;
     border-radius: 10px 10px 0px 0px;
   }
@@ -432,7 +479,7 @@ body {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: #BBDEFB;
     border: none;
     font-size: 24px;
     cursor: pointer;
@@ -442,6 +489,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: black;
+  }
+  .arrow:hover {
+    background-color: white;
+    color: #3498DB;
+    transition: 0.3s ease, color 0.3s ease;
   }
   .arrow.left {
     left: 10px;
@@ -477,23 +530,37 @@ body {
   }
   .lihat {
     display: flex;
-    padding: 15px;
+    padding: 9px 15px;
     background-color: #3498DB;
-    margin-top: 155px;
     margin-left: 0;
     margin-right: auto;
-    border-radius: 10px;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
     gap: 5px;
     color: white;
+  }
+  .lihat:hover {
+    background-color: white;
+    color: #3498DB;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   .lihat a {
     font-size: 15px;
     text-decoration: none;
     color: white;
   }
+  .lihat a:hover {
+    color: #3498DB;
+    transition: 0.3s ease, color 0.3s ease;
+  }
   .listrik .blue {
     width: 566px;
     margin-top: 40px;
+  }
+  .listrik .hehe {
+    position: absolute;
+    margin-left: 650px;
   }
 
 
@@ -546,6 +613,7 @@ body {
         font-size: 14px;
         font-weight: 500;
         color: #000;
+        width: auto !important;
     }
     .ppp {
         font-size: 14px;
