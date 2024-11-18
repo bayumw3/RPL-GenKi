@@ -51,7 +51,7 @@
                 <h1>Introducing Our Embedded system Product GenKi.</h1>
                 <p>Teknologi Terbaru yang Mengubah Gerakan Menjadi Energi, Ramah Lingkungan untuk Masa Depan yang Lebih Hijau.</p>
                 <div class="learn-more">
-                    <a href="">Learn More<i class="bi bi-chevron-right"></i></a>
+                    <a href="#about">Learn More<i class="bi bi-chevron-right"></i></a>
                 </div>
             </div>
             <img class="mid" src="asst/atas.png" alt="">
@@ -162,7 +162,7 @@
             </div>
             <p>Pendulum bekerja berdasarkan prinsip gravitasi dan momentum. Saat bandul diayunkan, gaya gravitasi menyebabkan bandul bergerak bolak-balik dalam gerakan periodik. Energi kinetik yang dihasilkan dari ayunan ini kemudian dikonversi menjadi energi listrik melalui sistem roda gigi (gear system). Roda gigi berfungsi untuk meningkatkan kecepatan rotasi dari gerakan lambat bandul menjadi kecepatan yang lebih tinggi, sehingga lebih efisien dalam menghasilkan listrik. Selanjutnya, roda gigi terhubung dengan generator motor, yang akan mengubah energi mekanik dari gerakan rotasi menjadi energi listrik.</p>
             <div class="more-information">
-                <a href="">More Information</a>
+                <a href="#footer">More Information</a>
                 <i class="bi bi-chevron-right"></i>
             </div>
         </div>
@@ -193,7 +193,7 @@
             <h1>Data Listrik GenKi</h1>
             <p>Data daya listrik yang dihasilkan oleh generator listrik GenKi akan diperbarui secara berkala oleh tim admin kami. Pembaruan data ini akan disajikan dalam bentuk tabel, yang memuat informasi mengenai daya listrik yang dihasilkan dalam periode waktu tertentu.</p>
             <div class="lihat">
-                <a href="">Lihat Tabel</a>
+                <a href="#tabel">Lihat Tabel</a>
                 <i class="bi bi-chevron-right"></i>
             </div>
         </div>
