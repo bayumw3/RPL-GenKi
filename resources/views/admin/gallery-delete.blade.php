@@ -23,42 +23,18 @@
         </div>
         <div class="kiri">
             <div class="gallery-card">
-                <div class="card hapus">
+                @foreach($galleries as $gallery)
+                <div class="card hapus" id="gallery-card-{{ $gallery->id }}">
                     <div class="delete">
-                        <span class="mdi--trash-outline" onclick="showPopup()"></span>
+                        <span class="mdi--trash-outline" onclick="showPopup('{{ $gallery->id }}')"></span>
                     </div>
-                    <img src="asst/gambar alat udh rmv bg/3.png" alt="">
+                    <img src="{{ asset('storage/' . $gallery->file_path) }}" alt="">
                     <div class="bottom">
-                        3D Design dari sisi atas
+                        {{ $gallery->keterangan }}
                     </div>
                 </div>
-                <div class="card hapus">
-                    <div class="delete">
-                        <span class="mdi--trash-outline" onclick="showPopup()"></span>
-                    </div>
-                    <img src="asst/gambar alat udh rmv bg/6.png" alt="">
-                    <div class="bottom">
-                        Gambar Alat Belakang
-                    </div>
-                </div>
-                <div class="card hapus">
-                    <div class="delete">
-                        <span class="mdi--trash-outline" onclick="showPopup()"></span>
-                    </div>
-                    <img src="asst/gambar alat udh rmv bg/7.png" alt="">
-                    <div class="bottom">
-                        Gambar Alat Swing
-                    </div>
-                </div>
-                <div class="card hapus">
-                    <div class="delete">
-                        <span class="mdi--trash-outline" onclick="showPopup()"></span>
-                    </div>
-                    <img src="asst/gambar alat udh rmv bg/5.png" alt="">
-                    <div class="bottom">
-                        Bagian Atas saat Swing
-                    </div>
-                </div>
+                @endforeach
+                
                 <div id="popup" class="popup">
                     <p>Apakah anda yakin ingin menghapus gambar?</p>
                     <div class="tombol">
@@ -77,44 +53,51 @@
         </div>
     </div>
     <script>
-        function showPopup() {
+        var deleteGalleryId = null;
+
+        // Menampilkan popup konfirmasi
+        function showPopup(galleryId) {
+            deleteGalleryId = galleryId; // Simpan ID gambar yang akan dihapus
             document.getElementById("popup").style.display = "block";
         }
 
+        // Menyembunyikan popup
         function hidePopup() {
             document.getElementById("popup").style.display = "none";
         }
 
-        function confirmDelete() {
-            // Tambahkan logika penghapusan gambar di sini
-            hidePopup(); // Sembunyikan pop-up setelah konfirmasi
-        }
-    </script>
-    <script>
-        // Menampilkan popup pertama
-        function showPopup() {
-            document.getElementById("popup").style.display = "block";
-        }
-    
-        // Menyembunyikan popup pertama
-        function hidePopup() {
-            document.getElementById("popup").style.display = "none";
-        }
-    
-        // Menyembunyikan popup kedua
+        // Menyembunyikan popup sukses
         function hidePopupSuccess() {
             document.getElementById("popup-success").style.display = "none";
         }
-    
-        // Fungsi untuk konfirmasi hapus
+
+        // Konfirmasi hapus gambar
         function confirmDelete() {
-            // Menyembunyikan popup pertama
-            hidePopup();
-    
-            // Menampilkan popup kedua untuk konfirmasi update data
-            document.getElementById("popup-success").style.display = "block";
-    
-            // Di sini Anda bisa menambahkan logika untuk menghapus gambar atau memperbarui data
+            // Hapus gambar dengan menggunakan AJAX
+            fetch(`/gallery/delete/${deleteGalleryId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'  // Token CSRF Laravel
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Jika berhasil, sembunyikan popup konfirmasi dan tampilkan popup sukses
+                    document.getElementById("popup").style.display = "none";
+                    document.getElementById("popup-success").style.display = "block";
+                    
+                    // Hapus elemen gambar dari halaman
+                    document.getElementById(`gallery-card-${deleteGalleryId}`).remove();
+                } else {
+                    alert('Gagal menghapus gambar!');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat menghapus gambar!');
+            });
         }
     </script>
   </body>

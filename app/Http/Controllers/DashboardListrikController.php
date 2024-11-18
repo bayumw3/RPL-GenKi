@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\DataListrik;
 use App\Models\Gallery;
 
@@ -10,10 +11,13 @@ class DashboardListrikController extends Controller
 {
     public function index()
     {
-        // Fetch existing records or create empty rows for the table (5 rows)
+        // Pastikan hanya admin yang bisa mengakses
+        if (Auth::user()->email !== 'admin@admin.com') {
+            return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
+        }
+
         $dataListriks = DataListrik::orderBy('id')->take(5)->get();
 
-        // If there are less than 5 rows, create empty ones
         for ($i = $dataListriks->count(); $i < 5; $i++) {
             $dataListriks->push(new DataListrik());
         }
@@ -36,10 +40,12 @@ class DashboardListrikController extends Controller
 
     public function indexubah()
     {
-        // Fetch existing records or create empty rows for the table (5 rows)
+        if (Auth::user()->email !== 'admin@admin.com') {
+            return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
+        }
+
         $dataListriks = DataListrik::orderBy('id')->take(5)->get();
 
-        // If there are less than 5 rows, create empty ones
         for ($i = $dataListriks->count(); $i < 5; $i++) {
             $dataListriks->push(new DataListrik());
         }

@@ -614,6 +614,11 @@ body {
         font-weight: 500;
         color: #000;
         width: auto !important;
+        text-decoration: none;
+    }
+    .contact-item:hover {
+        text-decoration: underline;
+        cursor: pointer;
     }
     .ppp {
         font-size: 14px;

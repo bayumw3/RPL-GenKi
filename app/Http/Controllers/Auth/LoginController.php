@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Middleware\AdminMiddleware;
 
 class LoginController extends Controller
 {
@@ -17,19 +18,25 @@ class LoginController extends Controller
 
     // Menangani proses login
     public function login(Request $request)
-    {
-        // Validasi input
-        $credentials = $request->only('email', 'password');
+{
+    // Validasi input
+    $credentials = $request->only('email', 'password');
 
-        // Melakukan login
-        if (Auth::attempt($credentials)) {
-            // Jika berhasil, redirect ke halaman utama
-            return redirect()->route('home');
+    // Melakukan login
+    if (Auth::attempt($credentials)) {
+        // Periksa apakah email adalah admin
+        if (Auth::user()->email === 'admin@admin.com') {
+            return view('admin.dashboard'); // Halaman admin
         }
 
-        // Jika login gagal, beri pesan error
-        return Redirect::back()->withErrors(['loginError' => 'Invalid credentials!']);
+        // Jika bukan admin, arahkan ke home
+        return redirect()->route('home');
     }
+
+    // Jika login gagal, beri pesan error
+    return Redirect::back()->withErrors(['loginError' => 'Invalid credentials!']);
+}
+
     public function logout(Request $request)
     {
         Auth::logout();

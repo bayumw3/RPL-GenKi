@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Gallery;
 use Illuminate\Support\Facades\Storage;
 
@@ -10,6 +11,10 @@ class GalleryController extends Controller
 {
     public function index()
     {
+        if (Auth::user()->email !== 'admin@admin.com') {
+            return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
+        }
+
         $galleries = Gallery::all();
         return view('admin.gallery-ubah', compact('galleries'));
     }
@@ -21,6 +26,15 @@ class GalleryController extends Controller
     
         // Mengirimkan data ke view
         return view('admin.gallery', compact('galleries'));
+    }
+    public function indexdelete()
+    {
+        if (Auth::user()->email !== 'admin@admin.com') {
+            return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
+        }
+
+        $galleries = Gallery::all();
+        return view('admin.gallery-delete', compact('galleries'));
     }
     public function utama()
     {
@@ -61,6 +75,18 @@ class GalleryController extends Controller
     return back()->with('success', 'Image uploaded successfully');
 }
     
+public function delete($id)
+{
+    $gallery = Gallery::findOrFail($id);
+    $filePath = storage_path('app/public/' . $gallery->file_path);
 
+    if (file_exists($filePath)) {
+        unlink($filePath); // Menghapus file gambar
+    }
+
+    $gallery->delete(); // Menghapus data dari database
+
+    return response()->json(['success' => true]);
+}
 }
 

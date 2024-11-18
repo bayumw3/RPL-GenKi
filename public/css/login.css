@@ -14,6 +14,7 @@ html, body {
 }
 .left-login {
     display: flex;
+    position: absolute;
     justify-content: center;
     align-items: center;
     background-size: cover; /* Agar gambar memenuhi area elemen */
@@ -65,7 +66,8 @@ html, body {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-left: 30px;
+    margin-left: 850px;
+    margin-right: 0;
     gap: 20px;
 }
 .right-login h1 {

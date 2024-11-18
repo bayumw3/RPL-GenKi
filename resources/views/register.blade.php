@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <title>Sign Up</title>
 </head>
+
 <body>
     <div class="bodo">
         <div class="left-login" style="background-image: url('asst/bg-login.png'); background-size: cover; background-position: center;">
@@ -33,9 +35,9 @@
                 <div class="form-group">
                     <input type="email" name="email" class="inputan" id="exampleInputEmail1" placeholder="Enter email" required>
                     @if ($errors->has('email'))
-                        <div class="alert alert-danger mt-2">
-                            {{ $errors->first('email') }}
-                        </div>
+                    <div class="alert alert-danger mt-2">
+                        {{ $errors->first('email') }}
+                    </div>
                     @endif
                 </div>
                 <div class="form-group">
@@ -49,9 +51,9 @@
                         <input type="password" name="password" class="inputan" id="password" placeholder="Password" required>
                         <i class="fas fa-eye toggle-password" id="togglePassword"></i>
                         @if ($errors->has('password'))
-                            <div class="alert alert-danger mt-2">
-                                {{ $errors->first('password') }}
-                            </div>
+                        <div class="alert alert-danger mt-2">
+                            {{ $errors->first('password') }}
+                        </div>
                         @endif
                     </div>
                 </div>
@@ -86,87 +88,89 @@
         });
     </script>
     <script>
-    // Function to validate passwords
-    function validatePasswords() {
-        const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('password_confirmation').value;
+        // Function to validate passwords
+        function validatePasswords() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('password_confirmation').value;
 
-        if (password !== confirmPassword) {
-            alert('Password and Confirm Password do not match!');
-            return false; // Prevent form submission
+            if (password !== confirmPassword) {
+                alert('Password and Confirm Password do not match!');
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
         }
-        return true; // Allow form submission
-    }
-    document.querySelector('form').addEventListener('submit', function(event) {
-    if (!validatePasswords()) {
-        event.preventDefault();  // Mencegah form submit jika password tidak cocok
-    }
-});
+        document.querySelector('form').addEventListener('submit', function(event) {
+            if (!validatePasswords()) {
+                event.preventDefault(); // Mencegah form submit jika password tidak cocok
+            }
+        });
+    </script>
+    <script>
+        // Function untuk validasi panjang password
+        function validatePasswordLength() {
+            const password = document.getElementById('password').value;
+            const passwordConfirm = document.getElementById('password_confirmation').value;
+            const errorMessage = document.getElementById('password-error');
 
-</script>
-<script>
-    // Function untuk validasi panjang password
-    function validatePasswordLength() {
-        const password = document.getElementById('password').value;
-        const passwordConfirm = document.getElementById('password_confirmation').value;
-        const errorMessage = document.getElementById('password-error');
+            // Validasi panjang password
+            if (password.length < 8) {
+                errorMessage.textContent = 'Password harus terdiri dari minimal 8 karakter.';
+                return false;
+            } else {
+                errorMessage.textContent = ''; // Jika panjang password valid, hapus pesan error
+            }
 
-        // Validasi panjang password
-        if (password.length < 8) {
-            errorMessage.textContent = 'Password harus terdiri dari minimal 8 karakter.';
-            return false;
-        } else {
-            errorMessage.textContent = ''; // Jika panjang password valid, hapus pesan error
+            // Validasi kesesuaian password dengan konfirmasi password
+            if (password !== passwordConfirm) {
+                document.getElementById('password-confirmation-error').textContent = 'Password dan konfirmasi password tidak cocok!';
+                return false;
+            } else {
+                document.getElementById('password-confirmation-error').textContent = ''; // Hapus pesan error jika password cocok
+            }
+
+            return true;
         }
 
-        // Validasi kesesuaian password dengan konfirmasi password
-        if (password !== passwordConfirm) {
-            document.getElementById('password-confirmation-error').textContent = 'Password dan konfirmasi password tidak cocok!';
-            return false;
-        } else {
-            document.getElementById('password-confirmation-error').textContent = ''; // Hapus pesan error jika password cocok
-        }
+        document.querySelector('form').addEventListener('submit', function(event) {
+            if (!validatePasswordLength()) {
+                event.preventDefault(); // Mencegah form submit jika password tidak valid
+            }
+        });
+    </script>
+    <script>
+        document.getElementById('email').addEventListener('input', function() {
+            const email = this.value;
+            const emailError = document.getElementById('email-error');
 
-        return true;
-    }
-
-    document.querySelector('form').addEventListener('submit', function(event) {
-        if (!validatePasswordLength()) {
-            event.preventDefault();  // Mencegah form submit jika password tidak valid
-        }
-    });
-</script>
-<script>
-    document.getElementById('email').addEventListener('input', function () {
-        const email = this.value;
-        const emailError = document.getElementById('email-error');
-
-        if (email.length > 0) {
-            fetch("{{ route('check.email') }}", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                },
-                body: JSON.stringify({ email: email })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'error') {
-                    emailError.textContent = data.message;
-                } else {
-                    emailError.textContent = '';
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        } else {
-            emailError.textContent = '';
-        }
-    });
-</script>
+            if (email.length > 0) {
+                fetch("{{ route('check.email') }}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                        },
+                        body: JSON.stringify({
+                            email: email
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'error') {
+                            emailError.textContent = data.message;
+                        } else {
+                            emailError.textContent = '';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            } else {
+                emailError.textContent = '';
+            }
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

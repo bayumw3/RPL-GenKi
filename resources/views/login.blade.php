@@ -39,7 +39,6 @@
                         <input type="password" name="password" class="inputan" id="exampleInputPassword1" placeholder="Password" required>
                         <i class="fas fa-eye toggle-password" id="togglePassword"></i>
                     </div>
-                    <p class="forgot">Forgot password?</p>
                 </div>
                 <button type="submit" class="btn">Login</button>
             </form>

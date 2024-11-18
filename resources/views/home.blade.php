@@ -7,7 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <title>Client 2</title>
+    <title>Genki</title>
+    <style>
+        form button:hover {
+            background-color: white !important;
+            color: #3498DB !important;
+        }
+    </style>
 </head>
 <body>
     <!-- ========================================== navbar ==========================================  -->
@@ -23,9 +29,9 @@
         <div class="left-nav">
             <img src="asst/search.png" alt="">
             <form action="{{ route('logout') }}" method="POST">
-    @csrf
-    <button type="submit" class="btn btn-danger">Sign Out</button>
-</form>
+            @csrf
+                <button type="submit" class="btn" style="background-color: #36749E; color:white;">Sign Out</button>
+            </form>
             <!-- <a href="">Sign Out</a> -->
         </div>
     </div>
@@ -165,24 +171,7 @@
                     <div class="slide-caption">{{ $gallery->keterangan }}</div>
                 </div>
                 @endforeach
-                <div class="slide">
-                    <div class="slide-img">
-                        <img src="asst/gambar alat udh rmv bg/6-removebg-preview.png" alt="3D Design dari sisi atas">
-                    </div>
-                    <div class="slide-caption">Gambar Alat bagian belakang</div>
-                </div>
-                <div class="slide">
-                    <div class="slide-img">
-                        <img src="asst/gambar alat udh rmv bg/7-removebg-preview.png" alt="3D Design dari sisi atas">
-                    </div>
-                    <div class="slide-caption">Gambar Alat Bagian depan Swing</div>
-                </div>
-                <div class="slide">
-                    <div class="slide-img">
-                        <img src="asst/gambar alat udh rmv bg/5.png" alt="3D Design dari sisi atas">
-                    </div>
-                    <div class="slide-caption">Bagian atas saat swing</div>
-                </div>
+                
             </div>
             <button class="arrow left" onclick="moveSlide(-1)">&#10094;</button>
             <button class="arrow right" onclick="moveSlide(1)">&#10095;</button>
@@ -236,9 +225,9 @@
             <!-- Contact Us Section -->
             <div class="col-md-4" style="display: flex !important; flex-direction: column; width: auto !important;">
                 <h5 class="footer-title" style="font-size: 23px;">Contact Us</h5>
-                <div class="contact-item"><i class="bi bi-geo-alt-fill"></i>Jl. Kumbang No.14, RT.02/RW.06, Babakan, Kecamatan Bogor Tengah, Kota Bogor, Jawa Barat 16128</div>
-                <div class="contact-item"><i class="bi bi-telephone-fill"></i>+62 858 8732 221 (Admin)</div>
-                <div class="contact-item"><i class="bi bi-envelope-fill"></i>genkiwebsite@gmail.com</div>
+                <a href="https://www.google.com/maps/place/Jl.+Kumbang+No.14,+RT.02%2FRW.06,+Babakan,+Kecamatan+Bogor+Tengah,+Kota+Bogor,+Jawa+Barat+16128/data=!4m2!3m1!1s0x2e69c5cdf40b5d27:0xbbb6f313d7f5d917?sa=X&ved=1t:242&ictx=111" class="contact-item"><i class="bi bi-geo-alt-fill"></i>Jl. Kumbang No.14, RT.02/RW.06, Babakan, Kecamatan Bogor Tengah, Kota Bogor, Jawa Barat 16128</a>
+                <a href="https://wa.me/+628588732221>" class="contact-item"><i class="bi bi-telephone-fill"></i>+62 858 8732 221 (Admin)</a>
+                <a href="mailto: genkiwebsite@gmail.com" class="contact-item"><i class="bi bi-envelope-fill"></i>genkiwebsite@gmail.com</a>
             </div>
             <!-- Social Handles Section -->
             <div class="col-md-4" style="display: flex !important; flex-direction: column;">

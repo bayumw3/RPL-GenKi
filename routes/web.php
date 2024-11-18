@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardListrikController;
 use Illuminate\Support\Facades\Route;
 // routes/web.php
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\DataListrikController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -12,27 +13,36 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::middleware('auth')->group(function () {
     // Halaman-halaman yang hanya bisa diakses oleh pengguna yang sudah login
     Route::get('/', [DashboardListrikController::class, 'indexhome'])->name('home');
+
+
     Route::get('/data-listrik', [DataListrikController::class, 'index'])->name('data-listrik.index');
     Route::post('/data-listrik', [DataListrikController::class, 'store'])->name('data-listrik.store');
 
     Route::get('/datalistrik', [DashboardListrikController::class, 'index'])->name('datalistrik.index');
     Route::get('/ubah-listrik', [DashboardListrikController::class, 'indexubah'])->name('ubah-listrik.indexubah');
     Route::post('/ubah-listrik', [DashboardListrikController::class, 'store'])->name('ubah-listrik.store');
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    });
     Route::get('/gallery-delete', function () {
         return view('admin.gallery-delete');
     });
 
-
+    Route::delete('/gallery/delete/{id}', [GalleryController::class, 'delete'])->name('gallery.delete');
     Route::get('/gallery', [GalleryController::class, 'indexhome'])->name('gallery.indexhome');
+    Route::get('/gallery-delete', [GalleryController::class, 'indexdelete'])->name('gallery.indexdelete');
     Route::get('/gallery-ubah', [GalleryController::class, 'index'])->name('gallery.index');
     Route::post('/gallery-ubah', [GalleryController::class, 'store'])->name('gallery.store');
-    // Tambahkan route lainnya yang perlu dilindungi
+
+    Route::get('/dashboard', function () {
+        if (Auth::check() && Auth::user()->email === 'admin@admin.com') {
+            return view('admin.dashboard');
+        }
+        return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
+    })->name('admin.dashboard');
+
+
 });
 
 
+ 
 
 
 // routes/web.php
