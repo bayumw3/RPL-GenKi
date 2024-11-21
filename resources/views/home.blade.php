@@ -13,15 +13,32 @@
             background-color: white !important;
             color: #3498DB !important;
         }
+        .row.text-center {
+            display: flex;
+            flex-wrap: wrap; /* Memastikan elemen tetap dalam baris baru jika ruang tidak cukup */
+            gap: 1rem; /* Opsional, untuk memberikan jarak antar elemen */
+        }
+
+        .ourservice { /* Membuat setiap elemen memiliki lebar yang proporsional */
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            justify-content: space-between; /* Pastikan konten tersebar merata di dalam elemen */
+        }
+
         .first:hover {
             scale: 105% !important;
-        }
-        .ourservice{
-            height: 250px;
         }
         .ourservice:hover {
             scale: 105% !important;
         }
+        .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
     </style>
 </head>
 <body>
@@ -236,7 +253,7 @@
             <div class="col-md-4" style="display: flex !important; flex-direction: column; width: auto !important;">
                 <h5 class="footer-title" style="font-size: 23px;">Contact Us</h5>
                 <a href="https://www.google.com/maps/place/Jl.+Kumbang+No.14,+RT.02%2FRW.06,+Babakan,+Kecamatan+Bogor+Tengah,+Kota+Bogor,+Jawa+Barat+16128/data=!4m2!3m1!1s0x2e69c5cdf40b5d27:0xbbb6f313d7f5d917?sa=X&ved=1t:242&ictx=111" class="contact-item"><i class="bi bi-geo-alt-fill"></i>Jl. Kumbang No.14, RT.02/RW.06, Babakan, Kecamatan Bogor Tengah, Kota Bogor, Jawa Barat 16128</a>
-                <a href="https://wa.me/+628588732221>" class="contact-item"><i class="bi bi-telephone-fill"></i>+62 858 8732 221 (Admin)</a>
+                <a href="https://wa.me/628588732221" class="contact-item"><i class="bi bi-telephone-fill"></i>+62 858 8732 221 (Admin)</a>
                 <a href="mailto: genkiwebsite@gmail.com" class="contact-item"><i class="bi bi-envelope-fill"></i>genkiwebsite@gmail.com</a>
             </div>
             <!-- Social Handles Section -->
