@@ -23,7 +23,8 @@
             display: flex;
             flex-direction: column;
             text-align: center;
-            justify-content: space-between; /* Pastikan konten tersebar merata di dalam elemen */
+            justify-content: space-between;
+            min-height: 257px; /* Pastikan konten tersebar merata di dalam elemen */
         }
 
         .first:hover {
@@ -36,7 +37,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    min-height: inherit !important;
 }
 
     </style>
@@ -108,56 +109,56 @@
         </div>
     </div>
     <!-- ========================================== about ==========================================  -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row text-center">
-                <!-- Service Item 1 -->
-                <div class="col-md-3 mb-4 ourservice">
-                    <div class="card border-0 p-3">
-                        <div class="d-flex mb-3" style="gap: 10px !important; justify-content: center; align-items: center;">
-                            <div class="icon-box">
-                                <span class="hugeicons--bio-energy"></span>
-                            </div>
-                            <h5 class="service-title" style="width: 137px;">Energi Bersih dan Hijau</h5>
+    <section class="py-5 d-flex">
+        <div class="container-service col-10 m-auto d-flex gap-4 d-md-col align-items-stretch" style="min-height: 250px; justify-content:center !important; align-items:center !important;">
+            <!-- Service Item 1 -->
+            <div class="col-md-3 mb-4 ourservice">
+                <div class="card border-0 p-3">
+                    <div class="d-flex mb-3" style="gap: 10px !important; justify-content: center; align-items: center;">
+                        <div class="icon-box">
+                            <span class="hugeicons--bio-energy"></span>
                         </div>
-                        <p class="service-text">Menghasilkan listrik tanpa emisi gas rumah kaca atau polusi, memanfaatkan energi terbarukan yang tidak merusak lingkungan dan mendukung pengurangan jejak karbon.</p>
+                        <h5 class="service-title" style="width: 137px;">Energi Bersih dan Hijau</h5>
                     </div>
+                    <p class="service-text">Menghasilkan listrik tanpa emisi gas rumah kaca atau polusi, memanfaatkan energi terbarukan yang tidak merusak lingkungan dan mendukung pengurangan jejak karbon.</p>
                 </div>
-                <!-- Service Item 2 -->
-                <div class="col-md-3 mb-4 ourservice">
-                    <div class="card border-0 p-3">
-                        <div class="d-flex mb-3" style="gap: 10px !important; justify-content: center; align-items: center;">
-                            <div class="icon-box">
-                                <span class="hugeicons--renewable-energy"></span>
-                            </div>
-                            <h5 class="service-title" style="width: 137px;">Listrik yang Berkelanjutan</h5>
+            </div>
+            <!-- Service Item 2 -->
+            <div class="col-md-3 mb-4 ourservice">
+                <div class="card border-0 p-3">
+                    <div class="d-flex mb-3" style="gap: 10px !important; justify-content: center; align-items: center;">
+                        <div class="icon-box">
+                            <span class="hugeicons--renewable-energy"></span>
                         </div>
-                        <p class="service-text">Dengan mengandalkan gravitasi dan gerakan pendulum, GenKi mampu menghasilkan listrik secara kontinu tanpa perlu bahan bakar tambahan, cocok untuk penggunaan jangka panjang.</p>
+                        <h5 class="service-title" style="width: 137px;">Listrik yang Berkelanjutan</h5>
                     </div>
+                    <p class="service-text">Dengan mengandalkan gravitasi dan gerakan pendulum, GenKi mampu menghasilkan listrik secara kontinu tanpa perlu bahan bakar tambahan, cocok untuk penggunaan jangka panjang.</p>
                 </div>
-                <!-- Service Item 3 -->
-                <div class="col-md-3 mb-4 ourservice">
-                    <div class="card border-0 p-3">
-                        <div class="d-flex align-items-center justify-content-center mb-3" style="gap: 10px !important;">
-                            <div class="icon-box">
-                                <span class="material-symbols--energy-program-time-used-outline"></span>
-                            </div>
-                            <h5 class="service-title">Inovatif dan Efisien</h5>
+            </div>
+
+            <!-- Service Item 3 -->
+            <div class="col-md-3 mb-4 ourservice">
+                <div class="card border-0 p-3" style="min-height: inherit !important;">
+                    <div class="d-flex align-items-center justify-content-center mb-3" style="gap: 10px !important;">
+                        <div class="icon-box">
+                            <span class="material-symbols--energy-program-time-used-outline"></span>
                         </div>
-                        <p class="service-text">GenKi mampu mengubah energi gerak menjadi listrik dengan biaya dan energi input minimal, menawarkan solusi efisien bagi banyak orang.</p>
-                        <br>
+                        <h5 class="service-title">Inovatif dan Efisien</h5>
                     </div>
+                    <p class="service-text">GenKi mampu mengubah energi gerak menjadi listrik dengan biaya dan energi input minimal, menawarkan solusi efisien bagi banyak orang.</p>
+                    <br>
                 </div>
-                <div class="col-md-3 mb-4 ourservice">
-                    <div class="card border-0 p-3">
-                        <div class="d-flex align-items-center justify-content-center mb-3" style="gap: 10px !important;">
-                            <div class="icon-box">
-                                <span class="hugeicons--save-energy-01"></span>
-                            </div>
-                            <h5 class="service-title">Ramah Lingkungan</h5>
+            </div>
+                
+            <div class="col-md-3 mb-4 ourservice">
+                <div class="card border-0 p-3">
+                    <div class="d-flex align-items-center justify-content-center mb-3" style="gap: 10px !important;">
+                        <div class="icon-box">
+                            <span class="hugeicons--save-energy-01"></span>
                         </div>
-                        <p class="service-text">tidak menghasilkan limbah atau polusi, dirancang untuk berdampak minimal pada ekosistem, menjadikannya pilihan yang selaras dengan kelestarian alam.</p>
+                        <h5 class="service-title">Ramah Lingkungan</h5>
                     </div>
+                    <p class="service-text">tidak menghasilkan limbah atau polusi, dirancang untuk berdampak minimal pada ekosistem, menjadikannya pilihan yang selaras dengan kelestarian alam.</p>
                 </div>
             </div>
         </div>
