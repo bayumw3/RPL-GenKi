@@ -29,7 +29,7 @@
                             <th>No</th>
                             <th>Date</th>
                             <th>Time</th>
-                            <th>Daya Listrik</th>
+                            <th>Daya Listrik (V)</th>
                             <th>Status</th>
                         </tr>
                     </thead>

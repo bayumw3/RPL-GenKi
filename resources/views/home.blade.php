@@ -34,12 +34,17 @@
             scale: 105% !important;
         }
         .card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    min-height: inherit !important;
-}
-
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        min-height: inherit !important;
+        }
+        .social-item a{
+            color: black;
+        }
+        .social-item a:hover {
+            color: #3498DB;
+        }
     </style>
 </head>
 <body>
@@ -210,10 +215,10 @@
         <div class="left-listrik">
             <h1>Data Listrik GenKi</h1>
             <p>Data daya listrik yang dihasilkan oleh generator listrik GenKi akan diperbarui secara berkala oleh tim admin kami. Pembaruan data ini akan disajikan dalam bentuk tabel, yang memuat informasi mengenai daya listrik yang dihasilkan dalam periode waktu tertentu.</p>
-            <div class="lihat">
+            <!-- <div class="lihat">
                 <a href="#tabel">Lihat Tabel</a>
                 <i class="bi bi-chevron-right"></i>
-            </div>
+            </div> -->
         </div>
         <img class="blue" src="asst/blue.png" alt="">
         <img class="hehe" src="asst/gambar alat udh rmv bg/2.png" alt="">
@@ -227,7 +232,7 @@
                     <th>No</th>
                     <th>Date</th>
                     <th>Time</th>
-                    <th>Daya Listrik</th>
+                    <th>Daya Listrik (V)</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -249,7 +254,7 @@
     <!-- ========================================== footer ==========================================  -->
     <div class="p-footer" id="footer">
     <div class="container footer-section" style="background-color: white;">
-        <div class="row">
+        <div class="row gap-4">
             <!-- Contact Us Section -->
             <div class="col-md-4" style="display: flex !important; flex-direction: column; width: auto !important;">
                 <h5 class="footer-title" style="font-size: 23px;">Contact Us</h5>
@@ -261,9 +266,9 @@
             <div class="col-md-4" style="display: flex !important; flex-direction: column;">
                 <h5 class="footer-title">Social Handles</h5>
                 <div class="social-item">
-                    <i class="bi bi-instagram"></i>
-                    <i class="bi bi-twitter-x"></i>
-                    <i class="bi bi-facebook"></i>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-twitter-x"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
                 </div>
             </div>
         </div>
